@@ -1,0 +1,12 @@
+<div class="league-item-holder">
+    @if (data) {
+        <div class="league-item-header">
+            <div class="title">{{data.name}}</div>
+        </div>
+        @for (date of data.eventDateGroups; track date.date) {
+            @for (event of date.events; track event.id) {
+                <event-item [data]="event"></event-item>
+            }
+        }
+    }
+</div>
