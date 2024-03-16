@@ -1,0 +1,12 @@
+<div class="betting-calc-holder">
+    @for (location of offerLocations; track location.id) {
+        <div class="location">
+            <div class="location-header">
+                {{location.name}}
+            </div>
+            @for (league of location.leagues; track league.id) {
+                <league-item [data]="league"></league-item>
+            }
+        </div>
+    }
+</div>
