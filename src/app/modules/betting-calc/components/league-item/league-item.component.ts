@@ -23,6 +23,7 @@ export class LeagueItemComponent {
             {
                 next: (res) => {
                     this.maxMarketPickData = res;
+                    console.log(this.maxMarketPickData)
                     this.leagueData = data;
                 },
                 error: (err) => {
@@ -53,7 +54,6 @@ export class LeagueItemComponent {
             map(dateGroups => {
                 const markets: MarketPicksData[] = [];
                 dateGroups.forEach(dateGroup => {
-                    console.log(new Date(dateGroup.date));
                     (dateGroup.events ?? []).forEach(sportEvent => {
                         (sportEvent.markets ?? []).forEach(market => {
                             const existingMarket = markets.find(item => item.marketId === market.marketId);

@@ -4,7 +4,7 @@
             <div class="title">{{leagueData.name}}</div>
             <div class="markets">
                 @for (market of maxMarketPickData; track market) {
-                    <div [ngStyle]="{'width': 'calc(' + 60 * market.picks.length + 'px)'}">{{market}}</div>
+                    <div [ngStyle]="{'width': 'calc(' + 60 * market.picks.length + 'px)'}">{{market.name}}</div>
                 }
             </div>
         </div>
