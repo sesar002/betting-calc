@@ -23,7 +23,6 @@ export class LeagueItemComponent {
             {
                 next: (res) => {
                     this.maxMarketPickData = res;
-                    console.log(this.maxMarketPickData)
                     this.leagueData = data;
                 },
                 error: (err) => {
