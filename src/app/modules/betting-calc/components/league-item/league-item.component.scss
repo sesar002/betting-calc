@@ -1,3 +1,48 @@
 .league-item-holder {
+    display: flex;
+    flex-direction: column;
+    height: calc(100% - 1rem);
     width: 100%;
+    .league-item-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 0 1rem 1rem;
+        background-color: #5c6e81;
+        color: white;
+        font-weight: 600;
+        .markets {
+            display: flex;
+            text-align: center;
+        }
+    }
+    .dates-wrapper {
+        height: 100%;
+        .date-holder {
+            display: flex;
+            font-weight: 600;
+            font-size: 14px;
+            background-color: #414c58;
+            color: white;
+            padding: 0.25rem 0 0.25rem 0.5rem;
+            .date {
+                flex: 1;
+            }
+            .market-picks {
+                display: flex;
+                .pick {
+                    width: 60px;
+                    text-align: center;
+                }
+            }
+        }
+        .events {
+            .event-holder {
+                border-bottom: thin solid #b8b8b8;
+                &:last-child {
+                    border: none;
+                }
+            }
+        }
+    }
 }

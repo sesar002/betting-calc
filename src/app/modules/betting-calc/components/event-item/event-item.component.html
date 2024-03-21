@@ -1,9 +1,37 @@
 <div class="event-item-holder">
-    @if (data) {
-        <div class="event-item-header">
-            <pre>
-                {{data}}
-            </pre>
+    @if (sportEventData) {
+        <div class="event-info">
+            @for (participant of sportEventData.fixture.participants; track participant) {
+                <div class="participant">
+                    {{participant.name}}
+                </div>
+            }
+            <div class="date">
+                {{ bettingService.getDateObj(sportEventData.fixture.startDate) | date : "HH:mm" }}
+            </div>
+        </div>
+        <div class="markets-holder">
+            @for (market of sportEventData.markets; track market) {
+                <div class="market">
+                    @for (pick of market.picks; track pick) {
+                        <div 
+                            (click)="pickAction(pick)" 
+                            [ngClass]="{
+                                'pick': true, 
+                                'selectable': !!pick.odds,
+                                'selected': selectedPick && selectedPick.id === pick.id
+                            }"
+                        >
+                            @if (pick.baseLine) {
+                                <div class="top-desc">
+                                    {{pick.baseLine}}
+                                </div>
+                            }
+                            {{pick.odds || ''}}
+                        </div>
+                    }
+                </div>
+            }
         </div>
     }
 </div>

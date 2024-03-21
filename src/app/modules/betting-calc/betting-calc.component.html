@@ -1,12 +1,69 @@
 <div class="betting-calc-holder">
-    @for (location of offerLocations; track location.id) {
-        <div class="location">
-            <div class="location-header">
-                {{location.name}}
+    <div class="table-holder">
+        @for (location of offerLocations; track location) {
+            <div class="location">
+                <div class="location-header">
+                    {{location.name}}
+                </div>
+                @for (league of location.leagues; track league) {
+                    <league-item (eventEmitter)="setSportEventValue($event)" [data]="league"></league-item>
+                }
             </div>
-            @for (league of location.leagues; track league.id) {
-                <league-item [data]="league"></league-item>
-            }
+        }
+    </div>
+    <div class="checkout-holder">
+        <input id="checkout-expander" type="checkbox" class="expanderer-target">
+        <label for="checkout-expander" class="expand-target">
+            <fa-icon [icon]="chevronIcon"></fa-icon>
+            CHECKOUT
+        </label>
+        <div class="target">
+            <div class="selected-events-holder">
+                <div class="header">BETSLIP</div>
+                <div class="selected-events-list">
+                    @for (event of selectedEvents; track event) {
+                        <div class="selected-event">
+                            <div class="participants">
+                                @for (participant of event.participants; track participant) {
+                                    <div class="participant">
+                                        {{participant.name}}
+                                    </div>
+                                }
+                            </div>
+                            <div class="pick-data">
+                                <div class="name">
+                                    {{event.pick?.name}}
+                                    @if (event.pick?.baseLine) {
+                                        ({{event.pick?.baseLine}})
+                                    }
+                                </div>
+                                <div>{{event.pick?.odds}}</div>
+                            </div>
+                            <button class="remove" (click)="remove(event)">
+                                <fa-icon [icon]="trashIcon"></fa-icon>
+                            </button>
+                        </div>
+                    }
+                </div>
+            </div>
+            <div class="checkout">
+                <div class="input-holder">
+                    <input 
+                        [(ngModel)]="inputValue" 
+                        (ngModelChange)="inputValueChange()" 
+                        type="number"
+                    >
+                    <div>EUR</div>
+                </div>
+                <div class="total-odds">
+                    <span>Total Odds:</span>
+                    <span>{{odds | number: '1.2-2'}}</span>
+                </div>
+                <div class="win-amount">
+                    <span>Win Amount:</span>
+                    <span>{{winAmount | number: '1.2-2'}}</span>
+                </div>
+            </div>
         </div>
-    }
+    </div>
 </div>

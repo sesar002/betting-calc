@@ -1,3 +1,229 @@
 .betting-calc-holder {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 1200px;
+    height: 100vh;
     width: 100%;
+    padding-block: 1rem;
+    margin: 0 auto;
+    overflow: hidden;
+    .table-holder {
+        flex: 1;
+        height: 100%;
+        overflow: auto;
+        &::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+            transition: all 1s ease;
+        }
+        &::-webkit-scrollbar-thumb {
+            background-color: rgb(175, 175, 175);
+            border-radius: 8px;
+        }
+        &::-webkit-scrollbar-track {
+            background-color: gray;
+            border-radius: 8px;
+        }
+        .location {
+            height: 100%;
+            min-width: 800px;
+            .location-header {
+                padding: 1rem;
+                background-color: #546374;
+                font-size: 16px;
+                color: white;
+                font-weight: 800;
+            }
+        }
+    }
+    .checkout-holder {
+        display: flex;
+        flex-direction: column;
+        width: 300px;
+        height: 100%;
+        padding: 0 0.5rem;
+        .expanderer-target {
+            display: none;
+
+            &:checked~.target {
+                top: 50px;
+            }
+            &:checked~.expand-target {
+                top: 0;
+                .ng-fa-icon {
+                    transform: rotate(180deg);
+                }
+            }
+        }
+        .expand-target {
+            display: none;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            cursor: pointer;
+            color: white;
+            height: 50px;
+            width: 100%;
+            background: #2a3940;
+            position: absolute;
+            top: calc(100% - 50px);
+            left: 0;
+            font-size: 1.25rem;
+        }
+        .target {
+            transition: all 0.2s ease;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+        .selected-events-holder {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            height: calc(100% - 6rem);
+            padding-bottom: 0.5rem;
+            .header {
+                padding: 0.5rem;
+                background: #d65f3d;
+                color: white;
+                font-weight: 600;
+                text-align: center;
+                border-radius: 4px;
+            }
+            .selected-events-list {
+                display: flex;
+                flex-direction: column;
+                gap: 0.5rem;
+                overflow: auto;
+                &::-webkit-scrollbar {
+                    width: 8px;
+                    height: 8px;
+                    transition: all 1s ease;
+                }
+                &::-webkit-scrollbar-thumb {
+                    background-color: rgb(175, 175, 175);
+                    border-radius: 8px;
+                }
+                &::-webkit-scrollbar-track {
+                    background-color: gray;
+                    border-radius: 8px;
+                }
+                .selected-event {
+                    display: flex;
+                    align-items: center;
+                    padding: 0.5rem;
+                    background-color: #99a5c9;
+                    border-radius: 4px;
+                    .participants {
+                        flex: 1;
+                        font-weight: 600;
+                        .participant {
+    
+                        }
+                    }
+                    .pick-data {
+                        text-align: center;
+                        width: 5rem;
+                        .name {
+                            font-weight: 600;
+                        }
+                    }
+                    .remove {
+                        cursor: pointer;
+                        font-size: 1.25rem;
+                        background: none;
+                        color: #b32700;
+                        border: none;
+                        transition: all 0.2s ease;
+                        &:hover {
+                            opacity: 0.6;
+                        }
+                    }
+                }
+            }
+        }
+        .checkout {
+            padding-inline: 0.5rem;
+            .toggle-button {
+                position: absolute;
+                top: 0;
+                left: 50%;
+                transform: translate(-50%, -50%);
+            }
+            .input-holder {
+                display: flex;
+                align-items: center;
+                gap: 0.25rem;
+                background-color: #a8a8a8;
+                padding-right: 0.5rem;
+                color: white;
+                font-weight: 600;
+                input {
+                    flex: 1;
+                    color: white;
+                    text-align: right;
+                    border: none;
+                    background: none;
+                    padding: 0.5rem;
+                    font-size: 1rem;
+                    &::-webkit-inner-spin-button {
+                        -webkit-appearance: none;
+                        margin: 0;
+                    }
+                    &:focus {
+                        outline: none;
+                    }
+                }
+            }
+            .total-odds {
+                display: flex;
+                justify-content: space-between;
+                padding-block: 0.5rem;
+                font-size: 1rem;
+                font-weight: 600;
+                color: white;
+            }
+            .win-amount {
+                display: flex;
+                justify-content: space-between;
+                padding-block: 0.5rem;
+                font-size: 1rem;
+                font-weight: 600;
+                color: white;
+            }
+        }
+    }
+}
+
+
+@media screen and (max-width: 1100px) {
+    .betting-calc-holder {
+        position: relative;
+        align-items: flex-start;
+        padding: 0;
+        .table-holder {
+            height: calc(100% - 50px);
+        }
+        .checkout-holder {
+            padding: 0;
+            width: 0;
+            height: 0;
+            .expand-target {
+                display: flex;
+                transition: top 0.3s ease;
+            }
+            .target {
+                position: absolute;
+                left: 0;
+                height: calc(100% - 50px);
+                width: 100%;
+                background: #2a3940;
+                overflow: hidden;
+                transition: top 0.3s ease; 
+                top: 100%;
+            }
+        }
+    }
 }

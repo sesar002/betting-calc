@@ -1,12 +1,37 @@
 <div class="league-item-holder">
-    @if (data) {
+    @if (leagueData) {
         <div class="league-item-header">
-            <div class="title">{{data.name}}</div>
+            <div class="title">{{leagueData.name}}</div>
+            <div class="markets">
+                @for (market of maxMarketPickData; track market) {
+                    <div [ngStyle]="{'width': 'calc(' + 60 * market.picks.length + 'px)'}">{{market}}</div>
+                }
+            </div>
         </div>
-        @for (date of data.eventDateGroups; track date.date) {
-            @for (event of date.events; track event.id) {
-                <event-item [data]="event"></event-item>
+        <div class="dates-wrapper">
+            @for (date of (leagueData.eventDateGroups || []); track date) {
+                <div class="date-holder">
+                    <div class="date">
+                        {{ bettingService.getDateObj(date.date) | date : "EEE, d MMM" }}
+                    </div>
+                    <div class="market-picks">
+                        @for (market of maxMarketPickData; track market) {
+                            @for (pick of market.picks; track pick) {
+                                <div class="pick">
+                                    {{pick.name}}
+                                </div>
+                            }
+                        }
+                    </div>
+                </div>
+                <div class="events">
+                    @for (sportEvent of date.events; track sportEvent) {
+                        <div class="event-holder">
+                            <event-item (eventEmitter)="setSportEvent($event)" [data]="{sportEvent: sportEvent, maxMarketPickData: maxMarketPickData}"></event-item>
+                        </div>
+                    }
+                </div>
             }
-        }
+        </div>
     }
 </div>
